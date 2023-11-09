@@ -14,7 +14,7 @@ env:
   UBOOT_REPO: hzyitc/u-boot-onecloud
   UBOOT_RELEASE: latest
   UBOOT_BURNIMG: eMMC.burn.img
-  ARMBIAN_REPO: candicandi/build
+  ARMBIAN_REPO: candicandi/armbuild
   ARMBIAN_REF: main
   PATCHES: 4077,5076
   PATCHES_DISABLED: 5082
@@ -69,7 +69,7 @@ jobs:
           if [[ -n "${PATCHES}" ]]; then
             echo -e "\nPatches:"
             while read -r id; do
-              echo -e "  ${C_BLUE}candicandi/build${C_RESET}#${C_MAGENTA}${id}${C_RESET}(http://github.com/candicandi/build/pull/${id})"
+              echo -e "  ${C_BLUE}candicandi/armbuild${C_RESET}#${C_MAGENTA}${id}${C_RESET}(http://github.com/candicandi/armbuild/pull/${id})"
             done < <(echo -e "${PATCHES}" | tr ',' '\n')
           fi
 
@@ -83,7 +83,7 @@ jobs:
 
             ${PATCHES:+$(
               echo "## Patches"
-              echo "${PATCHES}" | tr ',' '\n' | sed -E 's|(.*)|[candicandi/build#\1](http://github.com/candicandi/build/pull/\1)|'
+              echo "${PATCHES}" | tr ',' '\n' | sed -E 's|(.*)|[candicandi/armbuild#\1](http://github.com/candicandi/armbuild/pull/\1)|'
             )}
           EOF
 
@@ -113,7 +113,7 @@ jobs:
         if: ${{ env.PATCHES }}
         run: |
           echo "::group::Download"
-          curl -L -O "https://github.com/candicandi/build/pull/{${PATCHES}}.patch"
+          curl -L -O "https://github.com/candicandi/armbuild/pull/{${PATCHES}}.patch"
           echo "::endgroup::"
 
           for file in *.patch; do
@@ -187,7 +187,7 @@ jobs:
         if: ${{ env.PATCHES }}
         run: |
           echo "::group::Download"
-          curl -L -O "https://github.com/candicandi/build/pull/{${PATCHES}}.patch"
+          curl -L -O "https://github.com/candicandi/armbuild/pull/{${PATCHES}}.patch"
           echo "::endgroup::"
 
           for file in *.patch; do
@@ -335,7 +335,7 @@ jobs:
 
             ${PATCHES:+$(
               echo "# Patches"
-              echo "${PATCHES}" | tr ',' '\n' | sed -E 's|(.*)|[candicandi/build#\1](http://github.com/candicandi/build/pull/\1)|'
+              echo "${PATCHES}" | tr ',' '\n' | sed -E 's|(.*)|[candicandi/armbuild#\1](http://github.com/candicandi/armbuild/pull/\1)|'
             )}
 
             # SHA256
