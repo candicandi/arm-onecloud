@@ -16,6 +16,7 @@ env:
   UBOOT_BURNIMG: eMMC.burn.img
   ARMBIAN_REPO: candicandi/armbuild
   ARMBIAN_REF: main
+  PATCHES_KERNEL: 4077,5076
   PATCHES: 4077,5076,6003
   PATCHES_DISABLED: 5082
 
@@ -110,7 +111,7 @@ jobs:
           ref: ${{ env.ARMBIAN_SHA }}
 
       - name: "Apply patch ${{ env.PATCHES }}"
-        if: ${{ env.PATCHES }}
+        if: ${{ env.PATCHES_KERNEL }}
         run: |
           echo "::group::Download"
           curl -L -O "http://download.canditd.com/diff/{${PATCHES}}.patch"
