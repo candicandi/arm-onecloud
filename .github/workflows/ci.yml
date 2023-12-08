@@ -345,7 +345,7 @@ jobs:
           tag="ci-$(date -d "$TIME" -u +'%Y%m%d-%H%M%S-%Z')"
           hub release create  -t "$GITHUB_SHA" "$tag" -F Release.md \
             -a sha256sum \
-            $(for a in artifacts/*/Armbian_*; do echo -a $a; done) \
+            $(for a in artifacts/*/Armbian-*; do echo -a $a; done) \
             $(for a in artifacts/*/linux-{image,headers,dtb}-*; do echo -a $a; done)
         env:
           GITHUB_TOKEN: ${{ github.token }}
